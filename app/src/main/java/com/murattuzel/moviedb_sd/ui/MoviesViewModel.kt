@@ -1,6 +1,7 @@
 package com.murattuzel.moviedb_sd.ui
 
 import android.util.Log
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,9 +10,10 @@ import com.murattuzel.moviedb_sd.data.remote.Resource
 import com.murattuzel.moviedb_sd.data.remote.Status
 import com.murattuzel.moviedb_sd.data.remote.model.MovieItemResponse
 import io.reactivex.disposables.CompositeDisposable
-import javax.inject.Inject
 
-class MoviesViewModel @Inject constructor(private val movieApiRepository: MovieApiRepository) :
+class MoviesViewModel @ViewModelInject constructor(
+    private val movieApiRepository: MovieApiRepository
+) :
     ViewModel() {
 
     private val disposable = CompositeDisposable()
@@ -37,7 +39,7 @@ class MoviesViewModel @Inject constructor(private val movieApiRepository: MovieA
                     },
                     { throwable ->
                         Log.d(
-                            "MoviesViewModel",
+                            "TAG",
                             "throwable message: ${throwable.message}"
                         )
                     }
